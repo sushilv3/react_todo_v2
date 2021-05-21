@@ -11,19 +11,12 @@ const Todo = () => {
 
   const [toggleBtn, setToggleBtn] = useState(true);
 
-  const [updateEditItem, setUpdateEditItem] = useState("");
+  const [updatedItem, setUpdatedItem] = useState("");
 
   const addItem = () => {
     if (!inputData) {
         alert('pls fill data');
-    } else if (inputData && !toggleBtn) {
-        setItems(items.map((elem)=>{
-            if(elem.id === setUpdateEditItem){
-                return{...elem, name:inputData}
-            }
-            return elem;
-        }));
-    }else {
+    } else {
       const allInputData = {
         id: new Date().getTime().toString(),
         name: inputData,
@@ -45,15 +38,16 @@ const Todo = () => {
   };
 
   const editItem = (id) => {
+      console.log("@@@@@@ edit item called")
     let newEditItem = items.find((ele) => {
       return ele.id === id;
     });
-    setToggleBtn(false);
-    
-    setInputData(newEditItem.name);
+  
 
-    setUpdateEditItem(id);
+  };
 
+  const updated = ()=>{
+        console.log("updated called")
   };
 
   return (
@@ -77,7 +71,7 @@ const Todo = () => {
               <FontAwesomeIcon
                 title="Update Item"
                 icon={faEdit}
-                onClick={addItem}
+                onClick={updated}
               />
             )}
           </div>
